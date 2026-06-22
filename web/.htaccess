@@ -1,0 +1,23 @@
+# Forest Trove — Apache Configuration
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect config files
+<FilesMatch "\.(sql|env|log|sh|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect setup folder (comment out after initial setup)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^setup/ - [F,L]
+</IfModule>
+
+# PHP settings
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 12M
+    php_value max_execution_time 30
+</IfModule>

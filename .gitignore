@@ -39,6 +39,10 @@ yarn-error.log
 /.vscode/
 *.code-workspace
 
+# image uploads
+assets/images/uploads/*
+!assets/images/uploads/.gitkeep
+
 # OS files
 .DS_Store
 Thumbs.db

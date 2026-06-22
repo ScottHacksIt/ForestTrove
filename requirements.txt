@@ -1,0 +1,82 @@
+I want you to make me a React website called Forest Trove, or foresttrove.com. It should have a very green, earthy, forest feel too it with some woods and woodland creatues in it. 
+The idea of the site is that I've made rock paintings that I hide in the forest. Each painted rock (known as a "Treasure") has a small painting and a unique QR code on the back.
+I then register each treasure on my website, and then hide the treasure in the forest. When someone finds a treasure, they can scan the QR code to take them to a page in 
+the website with information about the treasure they just found. They will also have the opportunity to log some general non-identifying things about themselves and "claim" the treasure.
+
+The front page of the website should briefly describe what I do and how it works. Have it include some cute illustrations to describe the process. The website should then have
+the following functionality:
+
+The web site needs to have a login mechanism that wil lgrant admin privelege to see and perform admin functionality.
+
+Non-admin funcitonality:
+1. Browse treasures - This will allow the user to see all of the items that are hidden in the forest.Each treasure in the list will have a thumbnail image, name, whether it;s been found,
+and the name of the forest where it's hidden. This list should be sortable by date created and closeness based on which forest it;s in and the user's location provided by the browser.
+The list should be able to be filtered by whether the treasure has been found or not.
+2. Treasure details page - This page will show the details of a treasure, which includes the following:
+   - Picture
+   - Name
+   - Description
+   - Forest ID it can be found in
+   - The exact lattitude and longitude of the treasure
+   - The date the treasure was placed
+   - Whether the treasure has been found or not
+   - The ID of the person who found the treasure (if it was found)
+   - The date that the treasure was found (if it was found)
+3. Map page - This page takes the user's lattitude and longitude and shows a google map with them in the middle, and a pin for each unfound treasure that's been placed in any forest. The
+user can click onf of the pins to get a small pane with the thumbnail, name and forest ID of the treasure represented by the pin they clicked.
+4. Claim treasure - This page will allow the "seeker" to "claim" a treasure and mark themselves as the person who found it. The page will bring up the same information as "Treasure details page" but
+will allow them to enter their own non-identifying information. This info includes first name, a picture of themselves with the treasure, and a description of when they found it. Once the
+user submits the info, they will be saved to the database as a new Finder and their Finder ID will be associated with the treasure, as well as the date it was claimed as the found date. 
+The treasure will then be marked as "found".
+
+Admin functionality:
+1. Register a new treasure: This will allow an admin to register a new treasure that can be found in a forest. It should allow the user to enter the same information shown on the "Treasure details 
+page", except the who found the treasure.
+2. Edit treasure: This will allow the user to edit any of the items, as well as whether the treasure was found or not and by whom. This page will also contain a Delete button that will remove
+the item from the database (after confirmation).
+
+Database tables:
+A MySQL database will be used, which should have the following tables:
+
+Treasure
+   - ID - varchar(50)
+   - ImagePath - file varchar(250)
+   - Name - varchar(250)
+   - Description - varchar(5000)
+   - ForestID - int
+   - Lattitude - float
+   - Longitude - float
+   - CreatedDate - date
+   - PlacedDate - date
+   - IsFound - bool
+   - SeekerID - int (may be null)
+   - FoundDate - date (may be null)
+
+Forest
+   - ID - int (auto incrementing)
+   - Name - varchar(50)
+   - GoogleLink - varchar(250)
+   - Lattitude - float
+   - Longitude - float
+
+Seeker
+   - ID - int (auto incrementing)
+   - FirstName - varchar(50)
+   - ImagePath - file varchar(250)
+   - Description - varchar(5000)
+
+User
+   - ID - int (auto incrementing)
+   - FirstName - varchar(50)
+   - LastName - varchar(50)
+   - Username - varchar(50)
+   - Password - varchar(50)
+   - Role - int
+
+Role
+   - ID - int (auto incrementing)
+   - Name - varchar(50)
+   - Description - varchar(500)
+
+
+
